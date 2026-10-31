@@ -18,14 +18,14 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-
-    - name: Build APK with Gradle
-      run: ./gradlew assembleDebug
+    - name: Find and build APK
+      run: |
+        cd template
+        chmod +x gradlew
+        ./gradlew assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: Appcanvas-APK
-        path: app/build/outputs/apk/debug/app-debug.apk
+        path: template/app/build/outputs/apk/debug/app-debug.apk
